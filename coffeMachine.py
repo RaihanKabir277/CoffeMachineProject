@@ -45,20 +45,34 @@ def compare():
     nickel *= 0.05
     return(quarter+dime+penny+nickel)
 
-  
+def check_resource(coffe_choice):
+    water = (MENU[coffe_choice]["ingredients"]["water"])
+    coffe = (MENU[coffe_choice]["ingredients"]["coffee"])
+    milk = (MENU[coffe_choice]["ingredients"]["milk"])
+    if ((water <= resources["water"]) and (coffe <= resources["coffee"]) and (milk <= resources["milk"])):
+        total = compare()
+        coffe_cost = (MENU[coffe_choice]["cost"])
+
+        if total > coffe_cost:
+
+            print(f"Here is ${total - coffe_cost} in change")
+            print(f"Here is your{coffe_choice} . Enjoy!")
+        else:
+            print("Sorry that's not enough money. Money refunded.")
 
 
 choose = input("What would you like? (espresso/latte/cappuccino): ").lower()
 
 if choose == "espresso":
-    total=compare()
-    # print(total)
-    coffe_cost = (MENU["espresso"]["cost"])
-    if total > coffe_cost:
-        print(f"Here is ${total - coffe_cost} in change")
-        print("Here is your espresso. Enjoy!")
-    else:
-        print("Sorry that's not enough money. Money refunded.")
+    check_resource("espresso")
+    # total=compare()
+    # # print(total)
+    # coffe_cost = (MENU["espresso"]["cost"])
+    # if total > coffe_cost:
+    #     print(f"Here is ${total - coffe_cost} in change")
+    #     print("Here is your espresso. Enjoy!")
+    # else:
+    #     print("Sorry that's not enough money. Money refunded.")
 
 elif choose == "latte":
     total=compare()
@@ -79,6 +93,8 @@ elif choose == "cappuccino":
         print("Here is your cappuccino. Enjoy!")
     else:
         print("Sorry that's not enough money. Money refunded.")
+
+
 
 
 
